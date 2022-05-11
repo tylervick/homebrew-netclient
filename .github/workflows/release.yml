@@ -1,0 +1,68 @@
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Netmaker version'
+        required: true
+  release:
+    types: [published]
+
+jobs:
+  version: 
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.echo.outputs.tag }}
+      version: ${{ steps.echo.outputs.version }}
+    steps:
+      - name: Get Version Number
+        run: |
+          if [[ -n "${{ github.event.inputs.version }}" ]]; then
+            NETMAKER_VERSION=${{ github.event.inputs.version }}
+          else
+            NETMAKER_VERSION=$(curl -fsSL https://api.github.com/repos/gravitl/netmaker/tags | grep 'name' | head -1 | cut -d'"' -f4)
+          fi
+          echo "NETMAKER_VERSION=${NETMAKER_VERSION}" >> $GITHUB_ENV
+          # remove everything but digits and . for package (deb, rpm, etc) versions
+          PACKAGE_VERSION=$(echo ${NETMAKER_VERSION} | tr -cd '[:digit:].')
+          echo "PACKAGE_VERSION=${PACKAGE_VERSION}" >> $GITHUB_ENV
+      - name: Echo
+        id: echo
+        run: |
+          echo ${{ env.NETMAKER_VERSION }}
+          echo ${{ env.PACKAGE_VERSION }}
+          if [[ -z ${{ env.NETMAKER_VERSION }} || -z ${{ env.PACKAGE_VERSION }} ]]
+          then
+            exit 1
+          fi
+          echo "::set-output name=tag::${{ env.NETMAKER_VERSION }}"
+          echo "::set-output name=version::${{ env.PACKAGE_VERSION }}"
+      - name: checkout
+        uses: actions:checkout@v2
+      - name: build tar file
+        run: |
+          mkdir ${{ env.PACKAGE_VERSION }}
+          cd ${{ env.PACKAGE_VERSION }}
+          wget -o netclient https://github.com/gravitl/netmaker/releases/download/${{ NETMAKER_VERSION }}/netclient-darwin
+          chmod +x netclient
+          cp ../service/com.gravitl.netclient.plist .
+          tar -zcf netclient.tgz netclient com.gravitl.netclient.plist
+          rm netclient com.gravitl.netclient.plist
+      - name: update
+        run: |
+          SHA =$(shasum -a 256 ${{ env.PACKAGE_VERSION }}/netclient.tgz | cut -d " " -f 1)
+          sed -i 'version/c\  version "${{ env.PACKAGE_VERSION }}"' Casks/netclient.rb
+          sed -i 'sha256/c\  sha256 "{{ SHA }}"' Casks/netclient.rb
+      - name: commit files
+        run: |
+          git config --local user.email "github-bot@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ${{ env.PACKAGE_VERSON }}/netclient.tgz
+          git add Casks/netclient.rb
+          git commit -m "update to version ${{ env.PACKAGE_VERSION }}"
+      - name: push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN  }}
+          branch: ${{ github.ref }}
