@@ -39,7 +39,7 @@ jobs:
           echo "::set-output name=tag::${{ env.NETMAKER_VERSION }}"
           echo "::set-output name=version::${{ env.PACKAGE_VERSION }}"
       - name: checkout
-        uses: actions:checkout@v2
+        uses: actions/checkout@v2
       - name: build tar file
         run: |
           mkdir ${{ env.PACKAGE_VERSION }}
