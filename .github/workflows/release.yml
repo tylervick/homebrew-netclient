@@ -44,8 +44,7 @@ jobs:
         run: |
           mkdir -p build 
           cd build
-          url = "https://github.com/gravitl/netmaker/releases/download/${{ env.NETMAKER_VERSION }}/netclient-darwin"
-          wget -o netclient $url
+          wget -o netclient "https://github.com/gravitl/netmaker/releases/download/${{ env.NETMAKER_VERSION }}/netclient-darwin"
           chmod +x netclient
           cp ../service/com.gravitl.netclient.plist .
           tar -zcf netclient.tgz netclient com.gravitl.netclient.plist
