@@ -51,7 +51,7 @@ jobs:
           rm netclient com.gravitl.netclient.plist
       - name: update
         run: |
-          SHA =$(shasum -a 256 build/netclient.tgz | cut -d " " -f 1)
+          SHA=$(shasum -a 256 build/netclient.tgz | cut -d " " -f 1)
           sed -i 'version/c\  version "${{ env.PACKAGE_VERSION }}"' Casks/netclient.rb
           sed -i 'sha256/c\  sha256 "{{ SHA }}"' Casks/netclient.rb
       - name: commit files
