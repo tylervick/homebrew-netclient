@@ -42,8 +42,8 @@ jobs:
         uses: actions/checkout@v2
       - name: build tar file
         run: |
-          mkdir ${{ env.PACKAGE_VERSION }}
-          cd ${{ env.PACKAGE_VERSION }}
+          mkdir -p build 
+          cd build
           wget -o netclient https://github.com/gravitl/netmaker/releases/download/${{ NETMAKER_VERSION }}/netclient-darwin
           chmod +x netclient
           cp ../service/com.gravitl.netclient.plist .
@@ -51,14 +51,13 @@ jobs:
           rm netclient com.gravitl.netclient.plist
       - name: update
         run: |
-          SHA =$(shasum -a 256 ${{ env.PACKAGE_VERSION }}/netclient.tgz | cut -d " " -f 1)
+          SHA =$(shasum -a 256 build/netclient.tgz | cut -d " " -f 1)
           sed -i 'version/c\  version "${{ env.PACKAGE_VERSION }}"' Casks/netclient.rb
           sed -i 'sha256/c\  sha256 "{{ SHA }}"' Casks/netclient.rb
       - name: commit files
         run: |
           git config --local user.email "github-bot@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add ${{ env.PACKAGE_VERSON }}/netclient.tgz
           git add Casks/netclient.rb
           git commit -m "update to version ${{ env.PACKAGE_VERSION }}"
       - name: push
@@ -66,3 +65,13 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN  }}
           branch: ${{ github.ref }}
+      - name: Upload to Release
+        continue-on-error: true
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/netclient.tgz
+          tag: ${{ env.NETMAKER_VERSION }}
+          overwrite: true
+          asset_name: netclient.tgz
+
