@@ -18,7 +18,7 @@ cask "netclient" do
     executable: "/usr/local/bin/netclient",
     args: "uninstall",
     sudo: true,
-  }
+  },
     launchctl: [
       'com.gravitl.netclient'
   ]
