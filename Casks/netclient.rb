@@ -1,6 +1,6 @@
 cask "netclient" do
   version "0.14.1"
-  sha256 "f9437798e71064f05922ba0a4fc66f7b6e1afc055c92bc53a19ddccd63807499"
+  sha256 "d5fe8160817b3b33b5a0a4c02b88d1d8f6f47efd2127b8d5b4676c370bcd5e24"
 
   url "https://github.com/gravitl/homebrew-netclient/releases/download/v0.1.0/netclient.tgz"
   name "netclient"
