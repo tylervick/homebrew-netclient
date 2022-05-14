@@ -14,7 +14,7 @@ cask "netclient" do
     set_permissions "/Applications/netclient", '0755'
   end
 
-  install script: {
+  installer script: {
     executable: "#{staged_path}/install.sh",
     sudo: true,
   }
