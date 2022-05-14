@@ -1,6 +1,6 @@
 cask "netclient" do
   version "0.14.1"
-  sha256 "6778181290780728197d61a26d4acaf0fafb204b6976765a88b423f643bcc043"
+  sha256 "f9437798e71064f05922ba0a4fc66f7b6e1afc055c92bc53a19ddccd63807499"
 
   url "https://github.com/gravitl/homebrew-netclient/releases/download/v0.1.0/netclient.tgz"
   name "netclient"
@@ -14,13 +14,14 @@ cask "netclient" do
     set_permissions "/Applications/netclient", '0755'
   end
 
-  uninstall script: {
-    executable: "/usr/local/bin/netclient",
-    args: "uninstall",
+  install script: {
+    executable: "#{staged_path}/install.sh",
     sudo: true,
-  },
-    launchctl: [
-      'com.gravitl.netclient'
-  ]
+  }
+
+  uninstall script: {
+    executable: "#{staged_path}/uninstall.sh",
+    sudo: true,
+  }
 end
 
