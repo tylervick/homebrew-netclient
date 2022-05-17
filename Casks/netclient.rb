@@ -1,8 +1,8 @@
 cask "netclient" do
-  version "0.14.1"
-  sha256 "dbc1a5efd6934ab85640096e80803b6e5e5704f551cbda525ee4e4927a2b6d52"
+  version "0.14.0"
+  sha256 "b1e4e9769d3ecc3ae7170408d17de804181f498d753db9998105f818e5045c2a"
 
-  url "https://github.com/gravitl/homebrew-netclient/releases/download/v0.1.0/netclient.tgz"
+  url "https://github.com/gravitl/homebrew-netclient/releases/download/v0.14.0/netclient.tgz"
   name "netclient"
   desc "A platform for modern, blazing fast virtual networks"
   homepage "https://github.com/gravitl/netmaker"
