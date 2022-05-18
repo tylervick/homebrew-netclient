@@ -7,7 +7,7 @@ cask "netclient" do
     sha256 "4022f19e0e409992f2789fad3b9292b491adfa556c94a19d236a11dd59924cde"
   end
 
-  url "https://github.com/gravitl/homebrew-netclient/releases/download/#{version}/netclient-#{arch}.tgz"
+  url "https://github.com/gravitl/homebrew-netclient/releases/download/v#{version}/netclient-#{arch}.tgz"
   name "netclient"
   desc "A platform for modern, blazing fast virtual networks"
   homepage "https://github.com/gravitl/netmaker"
