@@ -1,6 +1,7 @@
 cask "netclient" do
-  arch = Hardware::CPU.intel? ? "" : "-arm64"
-    version 0.14.0
+  arch = Hardware::CPU.intel? ? "amd64" : "arm64"
+    version "0.14.0"
+
   if Hardware::CPU.intel?
     sha256 0db17817a6ffc9faaacd424163482347c72862b77e5b3a391d486ed7bc03fe54
   else
