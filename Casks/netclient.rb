@@ -1,10 +1,10 @@
 cask "netclient" do
   arch = Hardware::CPU.intel? ? "" : "-arm64"
-    version "0.14.0"
+    version 0.14.0
   if Hardware::CPU.intel?
-    sha256 "d73af7a49532ebf251db661f5cc22506c2062c66b4a6739d119b34a822dce1a3"
+    sha256 0db17817a6ffc9faaacd424163482347c72862b77e5b3a391d486ed7bc03fe54
   else
-    sha256 "4022f19e0e409992f2789fad3b9292b491adfa556c94a19d236a11dd59924cde"
+    sha256 41f82d49b913e4bd58fca92f280bb0c48ee27480e9db1b19a1d16035207a02b4
   end
 
   url "https://github.com/gravitl/homebrew-netclient/releases/download/v#{version}/netclient-#{arch}.tgz"
