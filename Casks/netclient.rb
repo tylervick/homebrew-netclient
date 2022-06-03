@@ -3,9 +3,9 @@ cask "netclient" do
   version "0.14.2"
 
   if Hardware::CPU.intel?
-    sha256 6e2f1731cd7d2ab47a00ad958e5e0301d5e074d4a53e48b4c1586d8b2007f26f
+    sha256 "6e2f1731cd7d2ab47a00ad958e5e0301d5e074d4a53e48b4c1586d8b2007f26f"
   else
-    sha256 98855f5aad663f9f0bba1d994012274f7f58e09813839685dc5c43542f3ec97c
+    sha256 "98855f5aad663f9f0bba1d994012274f7f58e09813839685dc5c43542f3ec97c"
   end
 
   url "https://github.com/gravitl/homebrew-netclient/releases/download/v#{version}/netclient-#{arch}.tgz"
