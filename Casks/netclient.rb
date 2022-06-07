@@ -24,7 +24,7 @@ cask "netclient" do
     sudo: true,
   }
 
-  uninstall script: {
+  zap script: {
     executable: "#{staged_path}/uninstall.sh",
     sudo: true,
   }
