@@ -8,7 +8,7 @@
 cp ../service/com.gravitl.netclient.plist .
 cp ../Casks/scripts/install.sh .
 cp ../Casks/scripts/uninstall.sh .
-sed -i "VERSION/$VERSION" install.sh
+sed -i s/"VERSION/$VERSION"/  ./install.sh
 
 #get amd64 binary
 wget -O netclient "https://github.com/gravitl/netmaker/releases/download/v$VERSION/netclient-darwin"
