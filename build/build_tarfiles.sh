@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# must be run from fileserver
 # set environment var VERSION = netclient version without leading v  --- 0.13.0 vice v0.13.0
 # run from build dir
 
@@ -28,5 +29,5 @@ sed -i "6s/.*/\    sha256 \"$SHA1\"/"  ../Casks/netclient.rb
 sed -i "8s/.*/\    sha256 \"$SHA2\"/" ../Casks/netclient.rb
 
 #copy files to netmaker.org
-scp netclient-amd64.tgz fileserver.netmaker.org/var/www/files/v$VERSION/darwin/
-scp netclient-arm64.tgz fileserver.netmaker.org/var/www/files/v$VERSION/darwin/
+cp netclient-amd64.tgz /var/www/files/v$VERSION/darwin/
+cp netclient-arm64.tgz /var/www/files/v$VERSION/darwin/
