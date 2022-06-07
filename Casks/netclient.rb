@@ -3,9 +3,9 @@ cask "netclient" do
   version "0.14.1"
 
   if Hardware::CPU.intel?
-    sha256 "be02a77060c94166f8f59de40b7170aff28467ddda30ae3719b8aaa451efc176"
+    sha256 "503d32dd8f091e7e47184c36986119c2acfbd0feaa135e57b840fdbdd10b1574"
   else
-    sha256 "9757c56888f196ddaade57ab6d7dbeedc86dde15e39e85adc7e5b55327727b33"
+    sha256 "76aad3a31db5130fff9129213b1a2026463d57ebf159945d2d1088971c522714"
   end
 
   url "https://fileserver.netmaker.org/v#{version}/darwin/netclient-#{arch}.tgz"
@@ -24,7 +24,7 @@ cask "netclient" do
     sudo: true,
   }
 
-  uninstall script: {
+  zap script: {
     executable: "#{staged_path}/uninstall.sh",
     sudo: true,
   }
