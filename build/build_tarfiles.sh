@@ -30,5 +30,6 @@ sed -i "6s/.*/\    sha256 \"$SHA1\"/"  ../Casks/netclient.rb
 sed -i "8s/.*/\    sha256 \"$SHA2\"/" ../Casks/netclient.rb
 
 #copy files to netmaker.org
+mkdir -p /var/www/files/v$VERSION/darwin/
 cp netclient-amd64.tgz /var/www/files/v$VERSION/darwin/
 cp netclient-arm64.tgz /var/www/files/v$VERSION/darwin/
