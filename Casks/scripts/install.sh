@@ -1,6 +1,6 @@
 #!/bin/sh
 arch = $(uname -m)
-if [ $arch = "x86_64"
+if [ $arch = "x86_64" ]
 then
 	cp $(brew --prefix)/Caskroom/netclient/VERSION/com.gravitl.netclient.plist /Library/LaunchDaemons/
 else
