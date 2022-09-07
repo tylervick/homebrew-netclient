@@ -10,3 +10,7 @@ fi
 if [ -f /var/log/com/gravitl.netclient.log ]; then
     rm /var/log/com.gravitl.netclient.log
 fi
+if [ -f /Library/LaunchDaemons/com.gravitl.netclient.plist ]; then
+    rm /Library/LaunchDaemons/com.gravitl.netclient.plist
+fi
+ 
