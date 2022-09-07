@@ -5,7 +5,6 @@
 # run from build dir
 
 #cp arch independent files
-cp ../service/com.gravitl.netclient.plist .
 cp ../Casks/scripts/install.sh .
 cp ../Casks/scripts/uninstall.sh .
 sed -i s/"VERSION/$VERSION"/  install.sh
@@ -13,11 +12,13 @@ sed -i s/"VERSION/$VERSION"/  install.sh
 #get amd64 binary
 wget -O netclient "https://github.com/gravitl/netmaker/releases/download/v$VERSION/netclient-darwin"
 chmod +x netclient
+cp ../service/com.gravitl.netclient.plist .
 tar -zcf netclient-amd64.tgz netclient com.gravitl.netclient.plist install.sh uninstall.sh
 
 #get arm64 binary
 wget -O netclient "https://github.com/gravitl/netmaker/releases/download/v$VERSION/netclient-darwin-arm64"
 chmod +x netclient
+cp ../service/com.gravitl.netclient.plist.m1 com.gravitl.netclient.plist
 tar -zcf netclient-arm64.tgz netclient com.gravitl.netclient.plist install.sh uninstall.sh
 
 #calc sha
