@@ -19,7 +19,7 @@ cask "netclient" do
   if Hardware::CPU.intel?
     set_permissions "/Applications/netclient", '0755'
   else
-    xattr -c /opt/homebrew/bin/netclient
+    xattr -c "/opt/homebrew/bin/netclient"
   end
   end
 
