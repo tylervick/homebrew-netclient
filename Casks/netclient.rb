@@ -1,15 +1,14 @@
 cask "netclient" do
   arch = Hardware::CPU.intel? ? "amd64" : "arm64"
-    version 0.14.2
+  version "0.15.1"
 
   if Hardware::CPU.intel?
-
-    sha256 "86bec3041cf823574b8a7acfce7023c21784fffb6ac4a3f494a84224e95e8dbe"
+    sha256 "d4d205c9b7b797e2164a6347f1f8e586448af6a469e5230a72a7b6c16e502501"
   else
-    sha256 "dcab5735ff41d356fbe0f1158423cfc2ae2214e72436aec90c9bd7d168e48642"
+    sha256 "6b67698700a91b105e22fab15bdadc62f7ee4f77e541afeb0f91c8516650eccc"
   end
 
-  url "https://github.com/gravitl/homebrew-netclient/releases/download/v#{version}/netclient-#{arch}.tgz"
+  url "https://fileserver.netmaker.org/v#{version}/darwin/netclient-#{arch}.tgz"
   name "netclient"
   desc "A platform for modern, blazing fast virtual networks"
   homepage "https://github.com/gravitl/netmaker"
@@ -29,7 +28,7 @@ cask "netclient" do
     sudo: true,
   }
 
-  uninstall script: {
+  zap script: {
     executable: "#{staged_path}/uninstall.sh",
     sudo: true,
   }
