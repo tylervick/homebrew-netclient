@@ -17,7 +17,11 @@ cask "netclient" do
   binary "netclient",  target: "netclient"
 
   postflight do
+  if Hardware::CPU.intel?
     set_permissions "/Applications/netclient", '0755'
+  else
+    xattr -c /opt/homebrew/bin/netclient
+  end
   end
 
   installer script: {
