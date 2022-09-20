@@ -9,6 +9,7 @@ cask "netclient" do
   end
 
   url "https://fileserver.netmaker.org/v#{version}/darwin/netclient-#{arch}.tgz"
+    verified: "https://fileserver.netmaker.org"
   name "netclient"
   desc "A platform for modern, blazing fast virtual networks"
   homepage "https://github.com/gravitl/netmaker"
