@@ -29,5 +29,8 @@ cask "netclient" do
     executable: "#{staged_path}/uninstall.sh",
     sudo: true,
   }
+
+  uninstall script: {
+  }
 end
 
